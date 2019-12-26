@@ -457,8 +457,10 @@ func readTextWithDescrFrame(b []byte, hasLang bool, encoded bool) (*Comm, error)
 
 	c := &Comm{}
 	if hasLang {
-		c.Language = string(b[:3])
-		b = b[3:]
+		if len(b) > 1 {
+		   c.Language = string(b[:3])
+		   b = b[3:]
+	   }
 	}
 
 	descTextSplit := dataSplit(b, enc)
